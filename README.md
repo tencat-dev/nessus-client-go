@@ -6,7 +6,7 @@ A lightweight Go SDK for interacting with the Nessus API.
 
 ```bash
 go get -u github.com/anhnmt/nessus-sdk-go
-````
+```
 
 ## 🔧 Usage
 
@@ -84,7 +84,7 @@ func main() {
 ### Session
 
 - [x] Create
-- [ ] Destroy
+- [x] Destroy
 - [ ] Edit
 - [ ] Get
 - [ ] Password
@@ -97,3 +97,4 @@ Contributions are welcome! Please open an issue or submit a pull request.
 ## 📄 License
 
 [MIT License](./LICENSE)
+
