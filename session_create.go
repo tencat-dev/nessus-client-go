@@ -18,8 +18,11 @@ type SessionCreateResponse struct {
 	Md5SumTenableLinks    string `json:"md5sum_tenable_links,omitempty"`
 }
 
-func (c *Client) SessionCreate(req *SessionCreateRequest) (*SessionCreateResponse, error) {
-	reqBody, err := sonic.Marshal(req)
+func (c *Client) SessionCreate() (*SessionCreateResponse, error) {
+	reqBody, err := sonic.Marshal(&SessionCreateRequest{
+		Username: c.username,
+		Password: c.password,
+	})
 	if err != nil {
 		return nil, err
 	}
