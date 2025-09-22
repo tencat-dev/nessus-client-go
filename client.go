@@ -5,8 +5,12 @@ import (
 )
 
 type Client struct {
-	req    *retryablehttp.Client
-	apiURL string
+	req       *retryablehttp.Client
+	apiURL    string
+	accessKey string
+	secretKey string
+	username  string
+	password  string
 }
 
 func NewClient(opts ...Option) *Client {
