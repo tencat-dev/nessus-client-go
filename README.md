@@ -78,12 +78,12 @@ func main() {
 
 ### Server
 
-- [ ] Properties
+- [x] Properties
 - [x] Status
 
 ### Session
 
-- [ ] Create
+- [x] Create
 - [ ] Destroy
 - [ ] Edit
 - [ ] Get
