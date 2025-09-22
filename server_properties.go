@@ -99,7 +99,7 @@ type TenableLinks struct {
 }
 
 func (c *Client) ServerProperties() (*ServerPropertiesResponse, error) {
-	resp, err := c.req.Get(c.apiURL + "/server/properties")
+	resp, err := c.Get(c.apiURL + "/server/properties")
 	if err != nil {
 		return nil, err
 	}

@@ -27,7 +27,7 @@ func (c *Client) SessionCreate() (*SessionCreateResponse, error) {
 		return nil, err
 	}
 
-	resp, err := c.req.Post(c.apiURL+"/session", "application/json", reqBody)
+	resp, err := c.Post(c.apiURL+"/session", "application/json", reqBody)
 	if err != nil {
 		return nil, err
 	}
