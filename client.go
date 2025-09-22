@@ -5,12 +5,14 @@ import (
 )
 
 type Client struct {
-	req *retryablehttp.Client
+	req    *retryablehttp.Client
+	apiURL string
 }
 
 func NewClient(opts ...Option) *Client {
 	c := &Client{
-		req: retryablehttp.NewClient(),
+		req:    retryablehttp.NewClient(),
+		apiURL: "https://localhost:8834",
 	}
 	for _, o := range opts {
 		o(c)
