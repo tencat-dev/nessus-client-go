@@ -45,7 +45,7 @@ func (c *Client) GetApiKeys() string {
 
 // GetToken returns the session token
 func (c *Client) GetToken() string {
-	return c.token
+	return fmt.Sprintf("token=%s", c.token)
 }
 
 func (c *Client) setAuthHeader(req *retryablehttp.Request) {
