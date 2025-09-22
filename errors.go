@@ -9,15 +9,13 @@ import (
 // APIError represents an error response returned by the API.
 // It implements the error interface so it can be used as a standard Go error.
 type APIError struct {
-	Message    string `json:"message"`    // Human-readable error message
-	ErrType    string `json:"error"`      // Type or category of the error
-	StatusCode int    `json:"statusCode"` // HTTP status code
+	ErrorMsg string `json:"error,omitempty"`
 }
 
 // Error implements the error interface for APIError.
 // It provides a formatted string representation of the API error.
 func (e *APIError) Error() string {
-	return fmt.Sprintf("api error: %s (%s, %d)", e.Message, e.ErrType, e.StatusCode)
+	return fmt.Sprintf("api error: %s", e.ErrorMsg)
 }
 
 // ErrorResponse attempts to unmarshal the response body into an APIError.
