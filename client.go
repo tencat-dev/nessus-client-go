@@ -38,10 +38,20 @@ func NewClient(opts ...Option) *Client {
 	return c
 }
 
-func (c *Client) ApiKeys() string {
+// GetApiKeys returns the api key in the format of accessKey=accessKey; secretKey=secretKey
+func (c *Client) GetApiKeys() string {
 	return fmt.Sprintf("accessKey=%s; secretKey=%s", c.accessKey, c.secretKey)
 }
 
-func (c *Client) Token() string {
+// GetToken returns the session token
+func (c *Client) GetToken() string {
 	return c.token
+}
+
+func (c *Client) setAuthHeader(req *retryablehttp.Request) {
+	if token := c.GetToken(); token != "" {
+		req.Header.Set(XCookie, token)
+	} else if apiKeys := c.GetApiKeys(); apiKeys != "" {
+		req.Header.Set(XApiKeys, apiKeys)
+	}
 }
