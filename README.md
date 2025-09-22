@@ -36,16 +36,59 @@ func main() {
 
 ## 📌 Roadmap
 
+### Folders
+
+- [ ] Create
+- [ ] Delete
+- [ ] Edit
+- [ ] List
+
 ### Plugins
 
 - [ ] Families
 - [ ] Family Details
 - [ ] Plugin Details
 
+### Scans
+
+- [ ] Attachment Prepare
+- [ ] Configure
+- [ ] Copy
+- [ ] Create
+- [ ] Delete
+- [ ] Delete Bulk
+- [ ] Delete History
+- [ ] Details
+- [ ] Export Formats
+- [ ] Export Download
+- [ ] Export Request
+- [ ] Export Status
+- [ ] Host Details
+- [ ] Import
+- [ ] Kill
+- [ ] Launch
+- [ ] List
+- [ ] Pause
+- [ ] Plugin Output
+- [ ] Read Status
+- [ ] Resume
+- [ ] Schedule
+- [ ] Stop
+- [ ] Timezones
+
 ### Server
 
 - [ ] Properties
 - [x] Status
+
+### Session
+
+- [ ] Create
+- [ ] Destroy
+- [ ] Edit
+- [ ] Get
+- [ ] Password
+- [ ] Keys
 
 ## 🤝 Contributing
 
