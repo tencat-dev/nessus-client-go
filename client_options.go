@@ -28,23 +28,23 @@ func (c *Client) WithRequest(req *retryablehttp.Client) {
 	c.req = req
 }
 
-// WithApiURL sets the base API URL for the Client.
-func WithApiURL(apiUrl string) Option {
+// WithAPIURL sets the base API URL for the Client.
+func WithAPIURL(apiURL string) Option {
 	return func(c *Client) error {
-		parsed, err := url.Parse(apiUrl)
+		parsed, err := url.Parse(apiURL)
 		if err != nil {
 			return err
 		}
 
 		parsed.Path = strings.TrimRight(parsed.Path, "/")
-		c.WithApiURL(parsed.String())
+		c.WithAPIURL(parsed.String())
 		return nil
 	}
 }
 
-// WithApiURL sets the base API URL for the Client.
-func (c *Client) WithApiURL(apiUrl string) {
-	c.apiURL = apiUrl
+// WithAPIURL sets the base API URL for the Client.
+func (c *Client) WithAPIURL(apiURL string) {
+	c.apiURL = apiURL
 }
 
 // WithAccount sets the username and password for the Client.
@@ -65,20 +65,20 @@ func (c *Client) WithAccount(username string, password string) {
 	c.password = password
 }
 
-// WithApiKey sets the accessKey and secretKey for the Client.
-func WithApiKey(accessKey string, secretKey string) Option {
+// WithAPIKey sets the accessKey and secretKey for the Client.
+func WithAPIKey(accessKey string, secretKey string) Option {
 	return func(c *Client) error {
 		if accessKey == "" || secretKey == "" {
 			return fmt.Errorf("accessKey or secretKey must not nil")
 		}
 
-		c.WithApiKey(accessKey, secretKey)
+		c.WithAPIKey(accessKey, secretKey)
 		return nil
 	}
 }
 
-// WithApiKey sets the accessKey and secretKey for the Client.
-func (c *Client) WithApiKey(accessKey string, secretKey string) {
+// WithAPIKey sets the accessKey and secretKey for the Client.
+func (c *Client) WithAPIKey(accessKey string, secretKey string) {
 	c.accessKey = accessKey
 	c.secretKey = secretKey
 }

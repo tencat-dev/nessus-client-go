@@ -20,7 +20,7 @@ type FeedStatus struct {
 	Progress int    `json:"progress,omitempty"`
 	Status   string `json:"status,omitempty"`
 }
-type DbStatus struct {
+type DBStatus struct {
 	Progress any    `json:"progress,omitempty"`
 	Status   string `json:"status,omitempty"`
 }
@@ -31,7 +31,7 @@ type EngineStatus struct {
 type DetailedStatus struct {
 	LoginStatus  string        `json:"login_status,omitempty"`
 	FeedStatus   *FeedStatus   `json:"feed_status,omitempty"`
-	DbStatus     *DbStatus     `json:"db_status,omitempty"`
+	DBStatus     *DBStatus     `json:"db_status,omitempty"`
 	EngineStatus *EngineStatus `json:"engine_status,omitempty"`
 }
 
