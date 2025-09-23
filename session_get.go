@@ -20,7 +20,7 @@ type Resource struct {
 }
 
 type SessionGetResponse struct {
-	Session Resource
+	Session Resource `json:"session"`
 }
 
 func (c *Client) SessionGet() (*SessionGetResponse, error) {
