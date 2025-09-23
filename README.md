@@ -14,27 +14,27 @@ go get -u github.com/anhnmt/nessus-sdk-go
 package main
 
 import (
-	"fmt"
-	"log"
+ "fmt"
+ "log"
 
-	nessus "github.com/anhnmt/nessus-sdk-go"
+ nessus "github.com/anhnmt/nessus-sdk-go"
 )
 
 func main() {
-	// Create a new client with API URL
-	client, err := nessus.NewClient(
-		nessus.WithApiURL("https://localhost:8834"),
-	)
-	if err != nil {
-		fmt.Println("failed to create client: ", err)
-		return
-	}
+ // Create a new client with API URL
+ client, err := nessus.NewClient(
+  nessus.WithApiURL("https://localhost:8834"),
+ )
+ if err != nil {
+  fmt.Println("failed to create client: ", err)
+  return
+ }
 
-	status, err := client.ServerStatus()
-	if err != nil {
-		log.Fatalf("failed to get server status: %v", err)
-	}
-	fmt.Println("Server status: ", status)
+ status, err := client.ServerStatus()
+ if err != nil {
+  log.Fatalf("failed to get server status: %v", err)
+ }
+ fmt.Println("Server status: ", status)
 }
 ```
 
@@ -89,10 +89,10 @@ func main() {
 
 - [x] Create
 - [x] Destroy
-- [ ] Edit
-- [ ] Get
-- [ ] Password
-- [ ] Keys
+- [x] Edit
+- [x] Get
+- [x] Password
+- [x] Keys
 
 ## 🤝 Contributing
 
@@ -101,4 +101,3 @@ Contributions are welcome! Please open an issue or submit a pull request.
 ## 📄 License
 
 [MIT License](./LICENSE)
-

@@ -46,8 +46,7 @@ type ServerPropertiesResponse struct {
 	TemplateVersion                 string          `json:"template_version,omitempty"`
 	ServerUUID                      string          `json:"server_uuid,omitempty"`
 }
-type Installers struct {
-}
+type Installers struct{}
 type Features struct {
 	Policies     bool `json:"policies,omitempty"`
 	Report       bool `json:"report,omitempty"`
