@@ -1,3 +1,4 @@
+// Package nessus implements nessus API
 package nessus
 
 import (
@@ -38,8 +39,8 @@ func NewClient(opts ...Option) *Client {
 	return c
 }
 
-// GetApiKeys returns the api key in the format of accessKey=accessKey; secretKey=secretKey
-func (c *Client) GetApiKeys() string {
+// GetAPIKeys returns the api key in the format of accessKey=accessKey; secretKey=secretKey
+func (c *Client) GetAPIKeys() string {
 	return fmt.Sprintf("accessKey=%s; secretKey=%s", c.accessKey, c.secretKey)
 }
 
@@ -51,7 +52,7 @@ func (c *Client) GetToken() string {
 func (c *Client) setAuthHeader(req *retryablehttp.Request) {
 	if token := c.GetToken(); token != "" {
 		req.Header.Set(XCookie, token)
-	} else if apiKeys := c.GetApiKeys(); apiKeys != "" {
+	} else if apiKeys := c.GetAPIKeys(); apiKeys != "" {
 		req.Header.Set(XApiKeys, apiKeys)
 	}
 }
