@@ -82,3 +82,20 @@ func (c *Client) WithAPIKey(accessKey string, secretKey string) {
 	c.accessKey = accessKey
 	c.secretKey = secretKey
 }
+
+// WithToken sets the session token for the Client.
+func WithToken(token string) Option {
+	return func(c *Client) error {
+		if token == "" {
+			return fmt.Errorf("token must not nil")
+		}
+
+		c.WithToken(token)
+		return nil
+	}
+}
+
+// WithToken sets the session token for the Client.
+func (c *Client) WithToken(token string) {
+	c.token = token
+}
