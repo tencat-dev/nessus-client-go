@@ -1,0 +1,49 @@
+package nessus
+
+import (
+	"io"
+	"net/http"
+
+	"github.com/bytedance/sonic"
+)
+
+type Resource struct {
+	ID          string   `json:"id"`
+	Username    string   `json:"username"`
+	Email       string   `json:"email"`
+	Name        string   `json:"name"`
+	Type        string   `json:"type"`
+	Permissions int      `json:"permissions"`
+	Lastlogin   int      `json:"lastlogin"`
+	ContainerID int      `json:"container_id"`
+	Groups      []string `json:"groups"`
+}
+
+type SessionGetResponse struct {
+	Session Resource
+}
+
+func (c *Client) SessionGet() error {
+	resp, err := c.Get(c.apiURL + "/session")
+	if err != nil {
+		return err
+	}
+	defer resp.Body.Close()
+
+	body, err := io.ReadAll(resp.Body)
+	if err != nil {
+		return err
+	}
+
+	if resp.StatusCode != http.StatusOK {
+		return ErrorResponse(body)
+	}
+
+	var data SessionGetResponse
+
+	if err = sonic.Unmarshal(body, &data); err != nil {
+		return err
+	}
+
+	return nil
+}
