@@ -10,10 +10,11 @@ import (
 )
 
 const (
-	XCookie  = "X-Cookie"
-	XApiKeys = "X-ApiKeys"
+	xCookie  = "X-Cookie"
+	xApiKeys = "X-ApiKeys"
 )
 
+// Client represents a client for interacting with the Nessus API
 type Client struct {
 	req    *retryablehttp.Client
 	apiURL string
@@ -30,6 +31,7 @@ type Client struct {
 	token string
 }
 
+// NewClient creates a new Client
 func NewClient(opts ...Option) *Client {
 	req := retryablehttp.NewClient()
 	req.HTTPClient.Transport = &http.Transport{
@@ -58,8 +60,8 @@ func (c *Client) GetToken() string {
 
 func (c *Client) setAuthHeader(req *retryablehttp.Request) {
 	if apiKeys := c.GetAPIKeys(); apiKeys != "" {
-		req.Header.Set(XApiKeys, apiKeys)
+		req.Header.Set(xApiKeys, apiKeys)
 	} else if token := c.GetToken(); token != "" {
-		req.Header.Set(XCookie, token)
+		req.Header.Set(xCookie, token)
 	}
 }
