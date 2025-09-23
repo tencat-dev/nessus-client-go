@@ -45,14 +45,14 @@ func (c *Client) SessionEdit(name string, email string) (*SessionEditResponse, e
 		return nil, err
 	}
 
+	if resp.StatusCode != http.StatusOK {
+		return nil, ErrorResponse(body)
+	}
+
 	var data SessionEditResponse
 
 	if err = sonic.Unmarshal(body, &data); err != nil {
 		return nil, err
-	}
-
-	if resp.StatusCode != http.StatusOK {
-		return nil, ErrorResponse(body)
 	}
 
 	return &data, nil
