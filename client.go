@@ -2,7 +2,9 @@
 package nessus
 
 import (
+	"crypto/tls"
 	"fmt"
+	"net/http"
 
 	"github.com/hashicorp/go-retryablehttp"
 )
@@ -29,8 +31,13 @@ type Client struct {
 }
 
 func NewClient(opts ...Option) *Client {
+	req := retryablehttp.NewClient()
+	req.HTTPClient.Transport = &http.Transport{
+		TLSClientConfig: &tls.Config{InsecureSkipVerify: true},
+	}
+
 	c := &Client{
-		req:    retryablehttp.NewClient(),
+		req:    req,
 		apiURL: "https://localhost:8834",
 	}
 	for _, o := range opts {
@@ -50,9 +57,9 @@ func (c *Client) GetToken() string {
 }
 
 func (c *Client) setAuthHeader(req *retryablehttp.Request) {
-	if token := c.GetToken(); token != "" {
-		req.Header.Set(XCookie, token)
-	} else if apiKeys := c.GetAPIKeys(); apiKeys != "" {
+	if apiKeys := c.GetAPIKeys(); apiKeys != "" {
 		req.Header.Set(XApiKeys, apiKeys)
+	} else if token := c.GetToken(); token != "" {
+		req.Header.Set(XCookie, token)
 	}
 }
