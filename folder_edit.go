@@ -13,7 +13,7 @@ type FolderEditRequest struct {
 }
 
 func (c *Client) FolderEdit(id int, name string) error {
-	reqBody, err := sonic.Marshal(&FolderCreateRequest{
+	reqBody, err := sonic.Marshal(&FolderEditRequest{
 		Name: name,
 	})
 	if err != nil {
@@ -35,9 +35,5 @@ func (c *Client) FolderEdit(id int, name string) error {
 		return ErrorResponse(body)
 	}
 
-	var data FolderCreateResponse
-	if err = sonic.Unmarshal(body, &data); err != nil {
-		return err
-	}
 	return nil
 }
