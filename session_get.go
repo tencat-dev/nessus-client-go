@@ -23,27 +23,27 @@ type SessionGetResponse struct {
 	Session Resource
 }
 
-func (c *Client) SessionGet() error {
+func (c *Client) SessionGet() (*SessionGetResponse, error) {
 	resp, err := c.Get(c.apiURL + "/session")
 	if err != nil {
-		return err
+		return nil, err
 	}
 	defer resp.Body.Close()
 
 	body, err := io.ReadAll(resp.Body)
 	if err != nil {
-		return err
+		return nil, err
 	}
 
 	if resp.StatusCode != http.StatusOK {
-		return ErrorResponse(body)
+		return nil, ErrorResponse(body)
 	}
 
 	var data SessionGetResponse
 
 	if err = sonic.Unmarshal(body, &data); err != nil {
-		return err
+		return nil, err
 	}
 
-	return nil
+	return &data, nil
 }
