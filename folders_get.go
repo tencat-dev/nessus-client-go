@@ -16,11 +16,11 @@ type FolderResource struct {
 	UnreadCount int    `json:"unread_count"`
 }
 
-type FolderGetResponse struct {
+type FoldersGetResponse struct {
 	Folders []FolderResource `json:"folders"`
 }
 
-func (c *Client) FolderGet() (*FolderGetResponse, error) {
+func (c *Client) FoldersGet() (*FoldersGetResponse, error) {
 	resp, err := c.Get(c.apiURL + "/folders")
 	if err != nil {
 		return nil, err
@@ -36,7 +36,7 @@ func (c *Client) FolderGet() (*FolderGetResponse, error) {
 		return nil, ErrorResponse(body)
 	}
 
-	var data FolderGetResponse
+	var data FoldersGetResponse
 
 	if err = sonic.Unmarshal(body, &data); err != nil {
 		return nil, err
