@@ -49,9 +49,9 @@ func main() {
 
 ### Plugins
 
-- [ ] Families
-- [ ] Family Details
-- [ ] Plugin Details
+- [x] Families
+- [x] Family Details
+- [x] Plugin Details
 
 ### Scans
 
