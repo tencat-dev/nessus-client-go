@@ -7,16 +7,16 @@ import (
 	"github.com/bytedance/sonic"
 )
 
-type FolderCreateRequest struct {
+type FoldersCreateRequest struct {
 	Name string `json:"name"`
 }
 
-type FolderCreateResponse struct {
+type FoldersCreateResponse struct {
 	ID int `json:"id"`
 }
 
-func (c *Client) FolderCreate(name string) (*FolderCreateResponse, error) {
-	reqBody, err := sonic.Marshal(&FolderCreateRequest{
+func (c *Client) FoldersCreate(name string) (*FoldersCreateResponse, error) {
+	reqBody, err := sonic.Marshal(&FoldersCreateRequest{
 		Name: name,
 	})
 	if err != nil {
@@ -38,7 +38,7 @@ func (c *Client) FolderCreate(name string) (*FolderCreateResponse, error) {
 		return nil, ErrorResponse(body)
 	}
 
-	var data FolderCreateResponse
+	var data FoldersCreateResponse
 	if err = sonic.Unmarshal(body, &data); err != nil {
 		return nil, err
 	}

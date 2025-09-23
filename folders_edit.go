@@ -8,12 +8,12 @@ import (
 	"github.com/bytedance/sonic"
 )
 
-type FolderEditRequest struct {
+type FoldersEditRequest struct {
 	Name string `json:"name"`
 }
 
-func (c *Client) FolderEdit(id int, name string) error {
-	reqBody, err := sonic.Marshal(&FolderEditRequest{
+func (c *Client) FoldersEdit(id int, name string) error {
+	reqBody, err := sonic.Marshal(&FoldersEditRequest{
 		Name: name,
 	})
 	if err != nil {
