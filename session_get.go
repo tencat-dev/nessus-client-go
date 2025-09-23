@@ -7,7 +7,7 @@ import (
 	"github.com/bytedance/sonic"
 )
 
-type Resource struct {
+type SessionResource struct {
 	ID          string   `json:"id"`
 	Username    string   `json:"username"`
 	Email       string   `json:"email"`
@@ -20,7 +20,7 @@ type Resource struct {
 }
 
 type SessionGetResponse struct {
-	Session Resource `json:"session"`
+	Session SessionResource `json:"session"`
 }
 
 func (c *Client) SessionGet() (*SessionGetResponse, error) {

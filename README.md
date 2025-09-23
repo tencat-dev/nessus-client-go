@@ -42,10 +42,10 @@ func main() {
 
 ### Folders
 
-- [ ] Create
-- [ ] Delete
-- [ ] Edit
-- [ ] List
+- [x] Create
+- [x] Delete
+- [x] Edit
+- [x] List
 
 ### Plugins
 
