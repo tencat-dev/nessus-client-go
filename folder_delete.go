@@ -7,7 +7,7 @@ import (
 )
 
 func (c *Client) FolderDelete(id int) error {
-	resp, err := c.Delete(c.apiURL+"/folder/"+fmt.Sprint(id), "application/json", nil)
+	resp, err := c.Delete(c.apiURL+"/folders/"+fmt.Sprint(id), "application/json", nil)
 	if err != nil {
 		return err
 	}
