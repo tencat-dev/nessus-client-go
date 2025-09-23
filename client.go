@@ -61,9 +61,9 @@ func (c *Client) GetToken() string {
 }
 
 func (c *Client) setAuthHeader(req *retryablehttp.Request) {
-	if apiKeys := c.GetAPIKeys(); apiKeys != "" {
-		req.Header.Set(xApiKeys, apiKeys)
-	} else if token := c.GetToken(); token != "" {
-		req.Header.Set(xCookie, token)
+	if c.accessKey != "" && c.secretKey != "" {
+		req.Header.Set(xApiKeys, c.GetAPIKeys())
+	} else if c.token != "" {
+		req.Header.Set(xCookie, c.GetToken())
 	}
 }
