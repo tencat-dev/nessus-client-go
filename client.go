@@ -32,7 +32,7 @@ type Client struct {
 }
 
 // NewClient creates a new Client
-func NewClient(opts ...Option) *Client {
+func NewClient(opts ...Option) (*Client, error) {
 	req := retryablehttp.NewClient()
 	req.HTTPClient.Transport = &http.Transport{
 		TLSClientConfig: &tls.Config{InsecureSkipVerify: true},
@@ -43,9 +43,11 @@ func NewClient(opts ...Option) *Client {
 		apiURL: "https://localhost:8834",
 	}
 	for _, o := range opts {
-		o(c)
+		if err := o(c); err != nil {
+			return nil, err
+		}
 	}
-	return c
+	return c, nil
 }
 
 // GetAPIKeys returns the api key in the format of accessKey=accessKey; secretKey=secretKey

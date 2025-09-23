@@ -22,9 +22,13 @@ import (
 
 func main() {
 	// Create a new client with API URL
-	client := nessus.NewClient(
+	client, err := nessus.NewClient(
 		nessus.WithApiURL("https://localhost:8834"),
 	)
+	if err != nil {
+		fmt.Println("failed to create client: ", err)
+		return
+	}
 
 	status, err := client.ServerStatus()
 	if err != nil {

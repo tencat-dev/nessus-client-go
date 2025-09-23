@@ -7,13 +7,12 @@ import (
 func TestClient_ServerStatus(t *testing.T) {
 	tests := []struct {
 		name    string
-		fields  *Client
+		options []Option
 		want    *ServerStatusResponse
 		wantErr bool
 	}{
 		{
-			name:   "call real api",
-			fields: NewClient(),
+			name: "call real api",
 			want: &ServerStatusResponse{
 				Code:   200,
 				Status: "ready",
@@ -23,10 +22,11 @@ func TestClient_ServerStatus(t *testing.T) {
 	}
 	for _, tt := range tests {
 		t.Run(tt.name, func(t *testing.T) {
-			c := &Client{
-				req:    tt.fields.req,
-				apiURL: tt.fields.apiURL,
+			c, err := NewClient(tt.options...)
+			if err != nil {
+				t.Errorf("NewClient() error = %v", err)
 			}
+
 			got, err := c.ServerStatus()
 			if (err != nil) != tt.wantErr {
 				t.Errorf("ServerStatus() error = %v, wantErr %v", err, tt.wantErr)
