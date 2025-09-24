@@ -6,7 +6,7 @@ import (
 )
 
 func (c *Client) SessionDestroy() error {
-	resp, err := c.Delete(c.apiURL+"/session", "application/json", nil)
+	resp, err := c.Delete(c.getAPIURL("/session"), "application/json", nil)
 	if err != nil {
 		return err
 	}

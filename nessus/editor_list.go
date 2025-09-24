@@ -30,7 +30,7 @@ type Templates struct {
 }
 
 func (c *Client) EditorList(editorType EditorType) (*EditorListResponse, error) {
-	resp, err := c.Get(c.apiURL + "/editor/" + string(editorType) + "/templates")
+	resp, err := c.Get(c.getAPIURL("/editor/%s/%s", editorType, "templates"))
 	if err != nil {
 		return nil, err
 	}

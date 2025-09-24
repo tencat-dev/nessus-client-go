@@ -18,7 +18,7 @@ type Timezones struct {
 }
 
 func (c *Client) ScansTimezones() (*ScansTimezonesResponse, error) {
-	resp, err := c.Get(c.apiURL + "/scans/timezones")
+	resp, err := c.Get(c.getAPIURL("/scans/timezones"))
 	if err != nil {
 		return nil, err
 	}

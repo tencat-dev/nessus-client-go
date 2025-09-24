@@ -20,7 +20,7 @@ func (c *Client) SessionPassword(password string, currentPassword string) error 
 	if err != nil {
 		return err
 	}
-	resp, err := c.Put(c.apiURL+"/session/chpasswd", "application/json", reqBody)
+	resp, err := c.Put(c.getAPIURL("/session/chpasswd"), "application/json", reqBody)
 	if err != nil {
 		return err
 	}

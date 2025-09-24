@@ -36,7 +36,7 @@ type DetailedStatus struct {
 }
 
 func (c *Client) ServerStatus() (*ServerStatusResponse, error) {
-	resp, err := c.Get(c.apiURL + "/server/status")
+	resp, err := c.Get(c.getAPIURL("/server/status"))
 	if err != nil {
 		return nil, err
 	}

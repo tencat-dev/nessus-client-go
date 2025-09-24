@@ -24,7 +24,7 @@ type SessionGetResponse struct {
 }
 
 func (c *Client) SessionGet() (*SessionGetResponse, error) {
-	resp, err := c.Get(c.apiURL + "/session")
+	resp, err := c.Get(c.getAPIURL("/session"))
 	if err != nil {
 		return nil, err
 	}

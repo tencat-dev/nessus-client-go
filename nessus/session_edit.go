@@ -34,7 +34,7 @@ func (c *Client) SessionEdit(name string, email string) (*SessionEditResponse, e
 	if err != nil {
 		return nil, err
 	}
-	resp, err := c.Put(c.apiURL+"/session", "application/json", reqBody)
+	resp, err := c.Put(c.getAPIURL("/session"), "application/json", reqBody)
 	if err != nil {
 		return nil, err
 	}

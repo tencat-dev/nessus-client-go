@@ -23,7 +23,7 @@ func (c *Client) FoldersCreate(name string) (*FoldersCreateResponse, error) {
 		return nil, err
 	}
 
-	resp, err := c.Post(c.apiURL+"/folders", "application/json", reqBody)
+	resp, err := c.Post(c.getAPIURL("/folders"), "application/json", reqBody)
 	if err != nil {
 		return nil, err
 	}

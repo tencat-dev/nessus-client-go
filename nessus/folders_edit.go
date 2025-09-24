@@ -1,7 +1,6 @@
 package nessus
 
 import (
-	"fmt"
 	"io"
 	"net/http"
 
@@ -20,7 +19,7 @@ func (c *Client) FoldersEdit(id int, name string) error {
 		return err
 	}
 
-	resp, err := c.Put(c.apiURL+"/folders/"+fmt.Sprint(id), "application/json", reqBody)
+	resp, err := c.Put(c.getAPIURL("/folders/%d", id), "application/json", reqBody)
 	if err != nil {
 		return err
 	}

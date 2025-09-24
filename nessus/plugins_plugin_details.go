@@ -1,7 +1,6 @@
 package nessus
 
 import (
-	"fmt"
 	"io"
 	"net/http"
 
@@ -21,7 +20,7 @@ type PluginsPluginDetailsResponse struct {
 }
 
 func (c *Client) PluginsPluginDetails(id int) (*PluginsPluginDetailsResponse, error) {
-	resp, err := c.Get(c.apiURL + "/plugins/plugin/" + fmt.Sprint(id))
+	resp, err := c.Get(c.getAPIURL("/plugins/plugin/%d", id))
 	if err != nil {
 		return nil, err
 	}

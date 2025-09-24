@@ -13,7 +13,7 @@ type SessionKeysResponse struct {
 }
 
 func (c *Client) SessionKeys() (*SessionKeysResponse, error) {
-	resp, err := c.Put(c.apiURL+"/session/keys", "application/json", nil)
+	resp, err := c.Put(c.getAPIURL("/session/keys"), "application/json", nil)
 	if err != nil {
 		return nil, err
 	}

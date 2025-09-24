@@ -1,13 +1,12 @@
 package nessus
 
 import (
-	"fmt"
 	"io"
 	"net/http"
 )
 
 func (c *Client) FoldersDelete(id int) error {
-	resp, err := c.Delete(c.apiURL+"/folders/"+fmt.Sprint(id), "application/json", nil)
+	resp, err := c.Delete(c.getAPIURL("/folders/%d", id), "application/json", nil)
 	if err != nil {
 		return err
 	}

@@ -5,6 +5,7 @@ import (
 	"crypto/tls"
 	"fmt"
 	"net/http"
+	"strings"
 
 	"github.com/hashicorp/go-retryablehttp"
 )
@@ -61,4 +62,8 @@ func (c *Client) setAuthHeader(req *retryablehttp.Request) {
 	} else if c.token != "" {
 		req.Header.Set(xCookie, c.GetToken())
 	}
+}
+
+func (c *Client) getAPIURL(format string, a ...any) string {
+	return fmt.Sprintf("%s%s", strings.TrimRight(c.apiURL, "/"), fmt.Sprintf(format, a...))
 }

@@ -21,7 +21,7 @@ type FoldersGetResponse struct {
 }
 
 func (c *Client) FoldersGet() (*FoldersGetResponse, error) {
-	resp, err := c.Get(c.apiURL + "/folders")
+	resp, err := c.Get(c.getAPIURL("/folders"))
 	if err != nil {
 		return nil, err
 	}

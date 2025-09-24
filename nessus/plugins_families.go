@@ -18,7 +18,7 @@ type PluginsFamiliesResponse struct {
 }
 
 func (c *Client) PluginsFamilies() (*PluginsFamiliesResponse, error) {
-	resp, err := c.Get(c.apiURL + "/plugins/families")
+	resp, err := c.Get(c.getAPIURL("/plugins/families"))
 	if err != nil {
 		return nil, err
 	}
