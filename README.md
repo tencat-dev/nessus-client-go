@@ -40,6 +40,11 @@ func main() {
 
 ## 📌 Roadmap
 
+### Editors
+
+- [ ] List
+- [ ] Details
+
 ### Folders
 
 - [x] Create
@@ -78,7 +83,7 @@ func main() {
 - [ ] Resume
 - [ ] Schedule
 - [ ] Stop
-- [ ] Timezones
+- [x] Timezones
 
 ### Server
 
