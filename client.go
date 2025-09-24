@@ -9,11 +9,6 @@ import (
 	"github.com/hashicorp/go-retryablehttp"
 )
 
-const (
-	xCookie  = "X-Cookie"
-	xApiKeys = "X-ApiKeys"
-)
-
 // Client represents a client for interacting with the Nessus API
 type Client struct {
 	req    *retryablehttp.Client
