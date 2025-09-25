@@ -8,14 +8,14 @@ import (
 )
 
 type PluginResource struct {
-	ID   int    `json:"id"`
-	Name string `json:"name"`
+	ID   int    `json:"id,omitempty"`
+	Name string `json:"name,omitempty"`
 }
 
 type PluginsFamilyDetailsResponse struct {
-	ID      int              `json:"id"`
-	Name    string           `json:"name"`
-	Plugins []PluginResource `json:"plugins"`
+	ID      int               `json:"id,omitempty"`
+	Name    string            `json:"name,omitempty"`
+	Plugins []*PluginResource `json:"plugins,omitempty"`
 }
 
 func (c *Client) PluginsFamilyDetails(id int) (*PluginsFamilyDetailsResponse, error) {
