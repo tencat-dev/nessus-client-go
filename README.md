@@ -42,7 +42,7 @@ func main() {
 
 ### Editors
 
-- [ ] List
+- [x] List
 - [ ] Details
 
 ### Folders
@@ -60,7 +60,7 @@ func main() {
 
 ### Scans
 
-- [ ] Attachment Prepare
+- [x] Attachment Prepare
 - [ ] Configure
 - [ ] Copy
 - [ ] Create
