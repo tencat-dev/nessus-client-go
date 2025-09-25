@@ -7,13 +7,23 @@ import (
 	"github.com/bytedance/sonic"
 )
 
+type SessionKeysRequest struct {
+	AccessKey string `json:"accessKey"`
+	SecretKey string `json:"secretKey"`
+}
+
 type SessionKeysResponse struct {
 	AccessKey string `json:"accessKey"`
 	SecretKey string `json:"secretKey"`
 }
 
-func (c *Client) SessionKeys() (*SessionKeysResponse, error) {
-	resp, err := c.Put(c.getAPIURL("/session/keys"), "application/json", nil)
+func (c *Client) SessionKeys(req *SessionKeysRequest) (*SessionKeysResponse, error) {
+	reqBody, err := sonic.Marshal(req)
+	if err != nil {
+		return nil, err
+	}
+
+	resp, err := c.Put(c.getAPIURL("/session/keys"), "application/json", reqBody)
 	if err != nil {
 		return nil, err
 	}
