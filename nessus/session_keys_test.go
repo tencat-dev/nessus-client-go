@@ -6,9 +6,6 @@ import (
 )
 
 func TestClient_SessionKeys(t *testing.T) {
-	type args struct {
-		req *SessionKeysRequest
-	}
 	tests := []struct {
 		name    string
 		options []Option
