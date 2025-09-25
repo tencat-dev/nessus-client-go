@@ -13,14 +13,10 @@ type ScansAttachmentPrepareParam struct {
 }
 
 type ScansAttachmentPrepareRequest struct {
-	HistoryID int `json:"history_id"`
+	HistoryID int `json:"history_id,omitempty"`
 }
 
-type ScansAttachmentPrepareResponse struct {
-	Token string `json:"id"`
-}
-
-func (c *Client) ScansAttachmentPrepare(param *ScansAttachmentPrepareParam, request *ScansAttachmentPrepareRequest) (*ScansAttachmentPrepareResponse, error) {
+func (c *Client) ScansAttachmentPrepare(param *ScansAttachmentPrepareParam, request *ScansAttachmentPrepareRequest) (map[string]any, error) {
 	reqBody, err := sonic.Marshal(&ScansAttachmentPrepareRequest{
 		HistoryID: request.HistoryID,
 	})
@@ -28,7 +24,7 @@ func (c *Client) ScansAttachmentPrepare(param *ScansAttachmentPrepareParam, requ
 		return nil, err
 	}
 
-	resp, err := c.Post(c.getAPIURL("/scans/%v/attachments/%v/prepare", param.ScanID, param.AttachmentID), "application/json", reqBody)
+	resp, err := c.Post(c.getAPIURL("/scans/%d/attachments/%d/prepare", param.ScanID, param.AttachmentID), "application/json", reqBody)
 	if err != nil {
 		return nil, err
 	}
@@ -43,9 +39,9 @@ func (c *Client) ScansAttachmentPrepare(param *ScansAttachmentPrepareParam, requ
 		return nil, ErrorResponse(body)
 	}
 
-	var data ScansAttachmentPrepareResponse
+	var data map[string]any
 	if err = sonic.Unmarshal(body, &data); err != nil {
 		return nil, err
 	}
-	return &data, nil
+	return data, nil
 }
