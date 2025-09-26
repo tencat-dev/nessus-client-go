@@ -63,10 +63,10 @@ func main() {
 - [x] Attachment Prepare
 - [ ] Configure
 - [ ] Copy
-- [ ] Create
-- [ ] Delete
-- [ ] Delete Bulk
-- [ ] Delete History
+- [x] Create
+- [x] Delete
+- [x] Delete Bulk
+- [x] Delete History
 - [ ] Details
 - [ ] Export Formats
 - [ ] Export Download
@@ -75,7 +75,7 @@ func main() {
 - [ ] Host Details
 - [ ] Import
 - [ ] Kill
-- [ ] Launch
+- [x] Launch
 - [ ] List
 - [ ] Pause
 - [ ] Plugin Output
