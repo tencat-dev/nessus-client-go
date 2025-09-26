@@ -1,4 +1,4 @@
-module github.com/anhnmt/nessus-sdk-go
+module github.com/tencat-dev/nessus-sdk-go
 
 go 1.25
 
