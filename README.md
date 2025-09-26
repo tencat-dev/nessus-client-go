@@ -5,7 +5,7 @@ A lightweight Go SDK for interacting with the Nessus API.
 ## 📦 Installation
 
 ```bash
-go get -u github.com/anhnmt/nessus-sdk-go
+go get -u github.com/tencat-dev/nessus-sdk-go
 ```
 
 ## 🔧 Usage
@@ -17,7 +17,7 @@ import (
  "fmt"
  "log"
 
- nessus "github.com/anhnmt/nessus-sdk-go"
+ nessus "github.com/tencat-dev/nessus-sdk-go"
 )
 
 func main() {
