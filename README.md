@@ -63,26 +63,26 @@ func main() {
 - [x] Attachment Prepare
 - [ ] Configure
 - [ ] Copy
-- [ ] Create
-- [ ] Delete
-- [ ] Delete Bulk
-- [ ] Delete History
-- [ ] Details
+- [x] Create
+- [x] Delete
+- [x] Delete Bulk
+- [x] Delete History
+- [x] Details
 - [ ] Export Formats
 - [ ] Export Download
 - [ ] Export Request
-- [ ] Export Status
-- [ ] Host Details
+- [x] Export Status
+- [x] Host Details
 - [ ] Import
-- [ ] Kill
-- [ ] Launch
-- [ ] List
-- [ ] Pause
-- [ ] Plugin Output
-- [ ] Read Status
-- [ ] Resume
-- [ ] Schedule
-- [ ] Stop
+- [x] Kill
+- [x] Launch
+- [x] List
+- [x] Pause
+- [x] Plugin Output
+- [x] Read Status
+- [x] Resume
+- [x] Schedule
+- [x] Stop
 - [x] Timezones
 
 ### Server
