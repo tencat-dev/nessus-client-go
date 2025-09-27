@@ -8,17 +8,15 @@ import (
 )
 
 type FoldersCreateRequest struct {
-	Name string `json:"name"`
+	Name string `json:"name,omitempty"`
 }
 
 type FoldersCreateResponse struct {
-	ID int `json:"id"`
+	ID int `json:"id,omitempty"`
 }
 
-func (c *Client) FoldersCreate(name string) (*FoldersCreateResponse, error) {
-	reqBody, err := sonic.Marshal(&FoldersCreateRequest{
-		Name: name,
-	})
+func (c *Client) FoldersCreate(req *FoldersCreateRequest) (*FoldersCreateResponse, error) {
+	reqBody, err := sonic.Marshal(req)
 	if err != nil {
 		return nil, err
 	}
