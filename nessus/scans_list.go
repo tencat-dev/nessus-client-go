@@ -58,7 +58,7 @@ func (c *Client) ScansList(query *ScansListQuery) (*ScansListResponse, error) {
 		apiPath = fmt.Sprintf("%s?%s", apiPath, queryStr)
 	}
 
-	resp, err := c.Get(c.getAPIURL(apiPath))
+	resp, err := c.Get(c.getAPIURL("%s", apiPath))
 	if err != nil {
 		return nil, err
 	}
