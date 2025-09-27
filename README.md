@@ -61,8 +61,8 @@ func main() {
 ### Scans
 
 - [x] Attachment Prepare
-- [ ] Configure
-- [ ] Copy
+- [x] Configure
+- [x] Copy
 - [x] Create
 - [x] Delete
 - [x] Delete Bulk
