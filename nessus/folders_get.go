@@ -8,16 +8,16 @@ import (
 )
 
 type FolderResource struct {
-	ID          int    `json:"id"`
-	Name        string `json:"name"`
-	Type        string `json:"type"`
-	DefaultTag  int    `json:"default_tag"`
-	Custom      int    `json:"custom"`
-	UnreadCount int    `json:"unread_count"`
+	ID          int    `json:"id,omitempty"`
+	Name        string `json:"name,omitempty"`
+	Type        string `json:"type,omitempty"`
+	DefaultTag  int    `json:"default_tag,omitempty"`
+	Custom      int    `json:"custom,omitempty"`
+	UnreadCount int    `json:"unread_count,omitempty"`
 }
 
 type FoldersGetResponse struct {
-	Folders []FolderResource `json:"folders"`
+	Folders []*FolderResource `json:"folders,omitempty"`
 }
 
 func (c *Client) FoldersGet() (*FoldersGetResponse, error) {
