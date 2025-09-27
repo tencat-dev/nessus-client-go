@@ -7,20 +7,17 @@ import (
 	"github.com/bytedance/sonic"
 )
 
-type SessionResource struct {
-	ID          string   `json:"id"`
-	Username    string   `json:"username"`
-	Email       string   `json:"email"`
-	Name        string   `json:"name"`
-	Type        string   `json:"type"`
-	Permissions int      `json:"permissions"`
-	Lastlogin   int      `json:"lastlogin"`
-	ContainerID int      `json:"container_id"`
-	Groups      []string `json:"groups"`
-}
-
 type SessionGetResponse struct {
-	Session SessionResource `json:"session"`
+	ID          int    `json:"id,omitempty"`
+	Username    string `json:"username,omitempty"`
+	Email       string `json:"email,omitempty"`
+	Name        string `json:"name,omitempty"`
+	Type        string `json:"type,omitempty"`
+	Permissions int    `json:"permissions,omitempty"`
+	Lastlogin   int    `json:"lastlogin,omitempty"`
+	Lockout     bool   `json:"lockout,omitempty"`
+	ContainerID int    `json:"container_id,omitempty"`
+	Groups      []any  `json:"groups,omitempty"`
 }
 
 func (c *Client) SessionGet() (*SessionGetResponse, error) {
@@ -40,7 +37,6 @@ func (c *Client) SessionGet() (*SessionGetResponse, error) {
 	}
 
 	var data SessionGetResponse
-
 	if err = sonic.Unmarshal(body, &data); err != nil {
 		return nil, err
 	}
