@@ -74,7 +74,7 @@ func main() {
 - [ ] Export Status
 - [ ] Host Details
 - [ ] Import
-- [ ] Kill
+- [x] Kill
 - [x] Launch
 - [ ] List
 - [ ] Pause
