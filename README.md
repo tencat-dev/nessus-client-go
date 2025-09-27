@@ -79,10 +79,10 @@ func main() {
 - [x] List
 - [x] Pause
 - [x] Plugin Output
-- [ ] Read Status
-- [ ] Resume
-- [ ] Schedule
-- [ ] Stop
+- [x] Read Status
+- [x] Resume
+- [x] Schedule
+- [x] Stop
 - [x] Timezones
 
 ### Server
