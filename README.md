@@ -67,12 +67,12 @@ func main() {
 - [x] Delete
 - [x] Delete Bulk
 - [x] Delete History
-- [ ] Details
+- [x] Details
 - [ ] Export Formats
 - [ ] Export Download
 - [ ] Export Request
-- [ ] Export Status
-- [ ] Host Details
+- [x] Export Status
+- [x] Host Details
 - [ ] Import
 - [x] Kill
 - [x] Launch
