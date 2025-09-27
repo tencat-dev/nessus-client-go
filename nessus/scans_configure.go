@@ -32,7 +32,7 @@ type ScansConfigureRequest struct {
 }
 
 type ScansConfigureResponse struct {
-	CreatationDate         int    `json:"creatation_date,omitempty"`
+	CreationDate           int    `json:"creation_date,omitempty"`
 	CustomTargets          string `json:"custom_targets,omitempty"`
 	DefaultPermissions     int    `json:"default_permissions,omitempty"`
 	Description            string `json:"description,omitempty"`
@@ -45,7 +45,7 @@ type ScansConfigureResponse struct {
 	Owner                  string `json:"owner,omitempty"`
 	OwnerID                int    `json:"owner_id,omitempty"`
 	PolicyID               int    `json:"policy_id,omitempty"`
-	Rrules                 int    `json:"rrules,omitempty"`
+	Rrules                 string `json:"rrules,omitempty"`
 	Shared                 int    `json:"shared,omitempty"`
 	Starttime              string `json:"starttime,omitempty"`
 	TagID                  int    `json:"tag_id,omitempty"`
