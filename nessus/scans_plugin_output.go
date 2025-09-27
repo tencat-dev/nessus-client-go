@@ -47,7 +47,7 @@ type ScansPluginOutputPathParams struct {
 type PluginOutput struct {
 	PluginOutput string            `json:"plugin_output,omitempty"`
 	Hosts        string            `json:"hosts,omitempty"`
-	Severiry     int               `json:"severiry,omitempty"`
+	Severity     int               `json:"severity,omitempty"`
 	Ports        map[string]string `json:"ports,omitempty"`
 }
 

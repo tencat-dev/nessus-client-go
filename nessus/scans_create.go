@@ -26,7 +26,7 @@ type ScansCreateRequest struct {
 }
 
 type ScanResult struct {
-	CreatationDate         int    `json:"creatation_date,omitempty"`
+	Creationdate           int    `json:"creation_date,omitempty"`
 	CustomTargets          string `json:"custom_targets,omitempty"`
 	DefaultPermissions     int    `json:"default_permissions,omitempty"`
 	Description            string `json:"description,omitempty"`
@@ -55,7 +55,7 @@ type ScansCreateResponse struct {
 	Scan *ScanResult `json:"scan,omitempty"`
 }
 
-func (c *Client) ScansCreate(request *ScansAttachmentPrepareRequest) (*ScansCreateResponse, error) {
+func (c *Client) ScansCreate(request *ScansCreateRequest) (*ScansCreateResponse, error) {
 	reqBody, err := sonic.Marshal(request)
 	if err != nil {
 		return nil, err

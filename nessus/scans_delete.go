@@ -6,7 +6,7 @@ import (
 )
 
 func (c *Client) ScansDelete(id int) error {
-	resp, err := c.Delete(c.getAPIURL("/session/%d", id), "application/json", nil)
+	resp, err := c.Delete(c.getAPIURL("/scans/%d", id), "application/json", nil)
 	if err != nil {
 		return err
 	}

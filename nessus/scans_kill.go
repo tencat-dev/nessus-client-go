@@ -6,7 +6,7 @@ import (
 )
 
 func (c *Client) ScansKill(scanID int) error {
-	resp, err := c.Post(c.getAPIURL("/scans/%d/kill", &scanID), "application/json", nil)
+	resp, err := c.Post(c.getAPIURL("/scans/%d/kill", scanID), "application/json", nil)
 	if err != nil {
 		return err
 	}

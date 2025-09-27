@@ -21,7 +21,7 @@ func (c *Client) ScansLaunch(id int, request *ScansLaunchRequest) (*ScansLaunchR
 		return nil, err
 	}
 
-	resp, err := c.Post(c.getAPIURL("/scans/%d/launch", &id), "application/json", reqBody)
+	resp, err := c.Post(c.getAPIURL("/scans/%d/launch", id), "application/json", reqBody)
 	if err != nil {
 		return nil, err
 	}
