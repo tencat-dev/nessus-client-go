@@ -1,4 +1,4 @@
-module github.com/tencat-dev/nessus-sdk-go
+module github.com/tencat-dev/nessus-client-go
 
 go 1.25
 

@@ -1,11 +1,11 @@
-# Nessus SDK for Go
+# Nessus Client for Go
 
-A lightweight Go SDK for interacting with the Nessus API.
+A lightweight Go Client for interacting with the Nessus API.
 
 ## 📦 Installation
 
 ```bash
-go get -u github.com/tencat-dev/nessus-sdk-go
+go get -u github.com/tencat-dev/nessus-client-go
 ```
 
 ## 🔧 Usage
@@ -17,7 +17,7 @@ import (
  "fmt"
  "log"
 
- nessus "github.com/tencat-dev/nessus-sdk-go"
+ nessus "github.com/tencat-dev/nessus-client-go"
 )
 
 func main() {
