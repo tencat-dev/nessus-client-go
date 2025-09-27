@@ -8,7 +8,7 @@ import (
 )
 
 type ScansReadStatusRequest struct {
-	Read bool `json:"read,omitempty"`
+	Read bool
 }
 
 func (c *Client) ScansReadStatus(id int, request *ScansReadStatusRequest) error {

@@ -30,8 +30,8 @@ type ScanResource struct {
 }
 
 type ScansListQuery struct {
-	FolderID             *int
-	LastModificationDate *int
+	FolderID             int
+	LastModificationDate int
 }
 
 type ScansListResponse struct {
@@ -43,12 +43,12 @@ type ScansListResponse struct {
 func (c *Client) ScansList(query *ScansListQuery) (*ScansListResponse, error) {
 	params := url.Values{}
 
-	if query.FolderID != nil {
-		params.Add("folder_id", fmt.Sprintf("%d", *query.FolderID))
+	if query.FolderID != 0 {
+		params.Add("folder_id", fmt.Sprintf("%d", query.FolderID))
 	}
 
-	if query.LastModificationDate != nil {
-		params.Add("last_modification_date", fmt.Sprintf("%d", *query.LastModificationDate))
+	if query.LastModificationDate != 0 {
+		params.Add("last_modification_date", fmt.Sprintf("%d", query.LastModificationDate))
 	}
 
 	apiPath := "/scans"
