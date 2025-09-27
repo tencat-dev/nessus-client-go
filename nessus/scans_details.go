@@ -63,12 +63,12 @@ type VulnerabilityResource struct {
 }
 
 type HistoryResource struct {
-	HistoryID           int    `json:"history_id,omitempty"`
-	UUID                string `json:"uuid,omitempty"`
-	OwnerID             int    `json:"owner_id,omitempty"`
-	Status              string `json:"status,omitempty"`
-	CreationDate        int    `json:"creation_date,omitempty"`
-	LastModifiationDate int    `json:"last_modifiation_date,omitempty"`
+	HistoryID            int    `json:"history_id,omitempty"`
+	UUID                 string `json:"uuid,omitempty"`
+	OwnerID              int    `json:"owner_id,omitempty"`
+	Status               string `json:"status,omitempty"`
+	CreationDate         int    `json:"creation_date,omitempty"`
+	LastModificationDate int    `json:"last_modification_date,omitempty"`
 }
 
 type FilterResource struct {
@@ -106,11 +106,11 @@ type ScansDetailsInfo struct {
 }
 
 type ScansDetailsRemediations struct {
-	Remeditations     *[]RemediationResource `json:"remeditations,omitempty"`
+	Remediations      *[]RemediationResource `json:"remediations,omitempty"`
 	NumHosts          int                    `json:"num_hosts,omitempty"`
 	NumCVEs           int                    `json:"num_cves,omitempty"`
 	NumImpactedHosts  int                    `json:"num_impacted_hosts,omitempty"`
-	NumRemediatedCVEs int                    `json:"num_remediated_cv_es,omitempty"`
+	NumRemediatedCVEs int                    `json:"num_remediated_cves,omitempty"`
 }
 
 type ScansDetailsResponse struct {

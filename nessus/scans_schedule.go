@@ -25,7 +25,7 @@ func (c *Client) ScansSchedule(id int, request *ScansScheduleRequest) (*ScansSch
 		return nil, err
 	}
 
-	resp, err := c.Put(c.getAPIURL("/scans/%d/status", id), "application/json", req)
+	resp, err := c.Put(c.getAPIURL("/scans/%d/schedule", id), "application/json", req)
 	if err != nil {
 		return nil, err
 	}
