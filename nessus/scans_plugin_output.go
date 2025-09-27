@@ -35,7 +35,7 @@ type ScansPluginOutputInfo struct {
 }
 
 type ScansPluginOutputQuery struct {
-	HistoryID *int
+	HistoryID int
 }
 
 type ScansPluginOutputPathParams struct {
@@ -59,8 +59,8 @@ type ScansPluginOutputResponse struct {
 func (c *Client) ScansPluginOutput(pathParam *ScansPluginOutputPathParams, query *ScansPluginOutputQuery) (*ScansPluginOutputResponse, error) {
 	params := url.Values{}
 
-	if query.HistoryID != nil {
-		params.Add("history_id", fmt.Sprintf("%d", *query.HistoryID))
+	if query.HistoryID != 0 {
+		params.Add("history_id", fmt.Sprintf("%d", query.HistoryID))
 	}
 
 	apiPath := fmt.Sprintf("/scans/%d/hosts/%d/plugins/%d", pathParam.ScanID, pathParam.HostID, pathParam.PluginID)
