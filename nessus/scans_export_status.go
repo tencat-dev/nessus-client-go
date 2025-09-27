@@ -11,7 +11,7 @@ type ScansExportStatusResponse struct {
 	Status string `json:"status,omitempty"`
 }
 
-func (c *Client) ScansExportStatus(scanID string, fileID string) (*ScansExportStatusResponse, error) {
+func (c *Client) ScansExportStatus(scanID int, fileID int) (*ScansExportStatusResponse, error) {
 	resp, err := c.Get(c.getAPIURL("/scans/%d/export/%d/status", scanID, fileID))
 	if err != nil {
 		return nil, err
