@@ -76,9 +76,9 @@ func main() {
 - [ ] Import
 - [x] Kill
 - [x] Launch
-- [ ] List
-- [ ] Pause
-- [ ] Plugin Output
+- [x] List
+- [x] Pause
+- [x] Plugin Output
 - [ ] Read Status
 - [ ] Resume
 - [ ] Schedule
