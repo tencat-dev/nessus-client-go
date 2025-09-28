@@ -64,6 +64,15 @@ func (c *Client) setAuthHeader(req *retryablehttp.Request) {
 	}
 }
 
-func (c *Client) getAPIURL(format string, a ...any) string {
-	return fmt.Sprintf("%s%s", strings.TrimRight(c.apiURL, "/"), fmt.Sprintf(format, a...))
+func (c *Client) getAPIURL(path string, a ...any) string {
+	base := strings.TrimRight(c.apiURL, "/")
+	if len(a) > 0 {
+		path = fmt.Sprintf(path, a...)
+	}
+
+	if !strings.HasPrefix(path, "/") {
+		path = "/" + path
+	}
+
+	return base + path
 }
