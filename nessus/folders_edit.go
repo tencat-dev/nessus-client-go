@@ -8,13 +8,11 @@ import (
 )
 
 type FoldersEditRequest struct {
-	Name string `json:"name"`
+	Name string `json:"name,omitempty"`
 }
 
-func (c *Client) FoldersEdit(id int, name string) error {
-	reqBody, err := sonic.Marshal(&FoldersEditRequest{
-		Name: name,
-	})
+func (c *Client) FoldersEdit(id int, req *FoldersEditRequest) error {
+	reqBody, err := sonic.Marshal(req)
 	if err != nil {
 		return err
 	}
