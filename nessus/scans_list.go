@@ -1,10 +1,10 @@
 package nessus
 
 import (
-	"fmt"
 	"io"
 	"net/http"
 	"net/url"
+	"strconv"
 
 	"github.com/bytedance/sonic"
 )
@@ -41,24 +41,24 @@ type ScansListResponse struct {
 }
 
 func (c *Client) ScansList(query *ScansListQuery) (*ScansListResponse, error) {
-	params := url.Values{}
-
-	if query.FolderID != 0 {
-		params.Add("folder_id", fmt.Sprintf("%d", query.FolderID))
-	}
-
-	if query.LastModificationDate != 0 {
-		params.Add("last_modification_date", fmt.Sprintf("%d", query.LastModificationDate))
-	}
-
 	apiPath := "/scans"
-	queryStr := params.Encode()
 
-	if queryStr != "" {
-		apiPath = fmt.Sprintf("%s?%s", apiPath, queryStr)
+	if query != nil {
+		params := url.Values{}
+
+		if query.FolderID != 0 {
+			params.Set("folder_id", strconv.Itoa(query.FolderID))
+		}
+		if query.LastModificationDate != 0 {
+			params.Set("last_modification_date", strconv.Itoa(query.LastModificationDate))
+		}
+
+		if qs := params.Encode(); qs != "" {
+			apiPath += "?" + qs
+		}
 	}
 
-	resp, err := c.Get(c.getAPIURL("%s", apiPath))
+	resp, err := c.Get(c.getAPIURL(apiPath))
 	if err != nil {
 		return nil, err
 	}
