@@ -1106,7 +1106,7 @@ type EditorDetailsResponse struct {
 	Name string `json:"name,omitempty"`
 }
 
-func (c *Client) EditorDetails(editorType EditorType, templateUUID string) (*map[string]any, error) {
+func (c *Client) EditorDetails(editorType EditorType, templateUUID string) (map[string]any, error) {
 	resp, err := c.Get(c.apiURL + "/editor/" + string(editorType) + "/templates" + templateUUID)
 	if err != nil {
 		return nil, err
@@ -1126,5 +1126,5 @@ func (c *Client) EditorDetails(editorType EditorType, templateUUID string) (*map
 	if err = sonic.Unmarshal(body, &data); err != nil {
 		return nil, err
 	}
-	return &data, nil
+	return data, nil
 }
