@@ -12,11 +12,8 @@ type SessionPasswordRequest struct {
 	CurrentPassword string `json:"current_password"`
 }
 
-func (c *Client) SessionPassword(password string, currentPassword string) error {
-	reqBody, err := sonic.Marshal(&SessionPasswordRequest{
-		Password:        password,
-		CurrentPassword: currentPassword,
-	})
+func (c *Client) SessionPassword(req *SessionPasswordRequest) error {
+	reqBody, err := sonic.Marshal(req)
 	if err != nil {
 		return err
 	}

@@ -4,11 +4,12 @@ import (
 	"testing"
 )
 
-func TestClient_ScansList(t *testing.T) {
+func TestClient_ScansReadStatus(t *testing.T) {
 	tests := []struct {
 		name    string
 		options []Option
-		query   *ScansListQuery
+		scanID  int
+		request *ScansReadStatusRequest
 		wantErr bool
 	}{
 		{
@@ -20,7 +21,8 @@ func TestClient_ScansList(t *testing.T) {
 					"a306b9ff56069c37b3f2ee120358cac809d77f159a1cf796eb1df64f783eea91",
 				),
 			},
-			query:   &ScansListQuery{FolderID: 1},
+			scanID:  1,
+			request: &ScansReadStatusRequest{Read: true},
 			wantErr: false,
 		},
 		{
@@ -29,7 +31,8 @@ func TestClient_ScansList(t *testing.T) {
 				WithAPIURL("https://localhost:8834"),
 				WithToken("06b2f2a7c5b7cf2c7bee97971f8e7393d06dc0ff7b982c6f"),
 			},
-			query:   &ScansListQuery{FolderID: 2},
+			scanID:  2,
+			request: &ScansReadStatusRequest{Read: false},
 			wantErr: false,
 		},
 		{
@@ -38,7 +41,8 @@ func TestClient_ScansList(t *testing.T) {
 				WithAPIURL("https://localhost:8834"),
 				WithAPIKey("invalid", "invalid"),
 			},
-			query:   &ScansListQuery{FolderID: 1},
+			scanID:  1,
+			request: &ScansReadStatusRequest{Read: true},
 			wantErr: true,
 		},
 		{
@@ -47,7 +51,8 @@ func TestClient_ScansList(t *testing.T) {
 				WithAPIURL("https://localhost:8834"),
 				WithToken("invalid-token"),
 			},
-			query:   &ScansListQuery{FolderID: 1},
+			scanID:  1,
+			request: &ScansReadStatusRequest{Read: true},
 			wantErr: true,
 		},
 		{
@@ -55,11 +60,12 @@ func TestClient_ScansList(t *testing.T) {
 			options: []Option{
 				WithAPIURL("https://localhost:8834"),
 			},
-			query:   &ScansListQuery{FolderID: 1},
+			scanID:  1,
+			request: &ScansReadStatusRequest{Read: true},
 			wantErr: true,
 		},
 		{
-			name: "success with nil query",
+			name: "error with negative scan ID",
 			options: []Option{
 				WithAPIURL("https://localhost:8834"),
 				WithAPIKey(
@@ -67,11 +73,12 @@ func TestClient_ScansList(t *testing.T) {
 					"a306b9ff56069c37b3f2ee120358cac809d77f159a1cf796eb1df64f783eea91",
 				),
 			},
-			query:   nil,
-			wantErr: false,
+			scanID:  -1,
+			request: &ScansReadStatusRequest{Read: true},
+			wantErr: true,
 		},
 		{
-			name: "error with invalid folder ID",
+			name: "error with zero scan ID",
 			options: []Option{
 				WithAPIURL("https://localhost:8834"),
 				WithAPIKey(
@@ -79,7 +86,21 @@ func TestClient_ScansList(t *testing.T) {
 					"a306b9ff56069c37b3f2ee120358cac809d77f159a1cf796eb1df64f783eea91",
 				),
 			},
-			query:   &ScansListQuery{FolderID: -1},
+			scanID:  0,
+			request: &ScansReadStatusRequest{Read: true},
+			wantErr: true,
+		},
+		{
+			name: "error with nil request",
+			options: []Option{
+				WithAPIURL("https://localhost:8834"),
+				WithAPIKey(
+					"06ea945d67266e66fe6979aa448c321a6624048f6a3480cde000dad76e7ef921",
+					"a306b9ff56069c37b3f2ee120358cac809d77f159a1cf796eb1df64f783eea91",
+				),
+			},
+			scanID:  1,
+			request: nil,
 			wantErr: true,
 		},
 	}
@@ -91,13 +112,9 @@ func TestClient_ScansList(t *testing.T) {
 				t.Errorf("NewClient() error = %v", err)
 				return
 			}
-			got, err := c.ScansList(tt.query)
+			err = c.ScansReadStatus(tt.scanID, tt.request)
 			if (err != nil) != tt.wantErr {
-				t.Errorf("ScansList() error = %v, wantErr %v", err, tt.wantErr)
-				return
-			}
-			if !tt.wantErr && (got == nil || (len(got.Scans) == 0 && len(got.Folders) == 0)) {
-				t.Errorf("ScansList() got = %v, want non-nil scans or folders", got)
+				t.Errorf("ScansReadStatus() error = %v, wantErr %v", err, tt.wantErr)
 			}
 		})
 	}

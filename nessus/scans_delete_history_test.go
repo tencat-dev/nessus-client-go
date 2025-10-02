@@ -4,12 +4,13 @@ import (
 	"testing"
 )
 
-func TestClient_ScansList(t *testing.T) {
+func TestClient_ScansDeleteHistory(t *testing.T) {
 	tests := []struct {
-		name    string
-		options []Option
-		query   *ScansListQuery
-		wantErr bool
+		name      string
+		options   []Option
+		scanID    int
+		historyID int
+		wantErr   bool
 	}{
 		{
 			name: "success with valid API key",
@@ -20,8 +21,9 @@ func TestClient_ScansList(t *testing.T) {
 					"a306b9ff56069c37b3f2ee120358cac809d77f159a1cf796eb1df64f783eea91",
 				),
 			},
-			query:   &ScansListQuery{FolderID: 1},
-			wantErr: false,
+			scanID:    1,
+			historyID: 10,
+			wantErr:   false,
 		},
 		{
 			name: "success with valid session token",
@@ -29,8 +31,9 @@ func TestClient_ScansList(t *testing.T) {
 				WithAPIURL("https://localhost:8834"),
 				WithToken("06b2f2a7c5b7cf2c7bee97971f8e7393d06dc0ff7b982c6f"),
 			},
-			query:   &ScansListQuery{FolderID: 2},
-			wantErr: false,
+			scanID:    2,
+			historyID: 20,
+			wantErr:   false,
 		},
 		{
 			name: "error with invalid API key",
@@ -38,8 +41,9 @@ func TestClient_ScansList(t *testing.T) {
 				WithAPIURL("https://localhost:8834"),
 				WithAPIKey("invalid", "invalid"),
 			},
-			query:   &ScansListQuery{FolderID: 1},
-			wantErr: true,
+			scanID:    1,
+			historyID: 10,
+			wantErr:   true,
 		},
 		{
 			name: "error with invalid session token",
@@ -47,19 +51,21 @@ func TestClient_ScansList(t *testing.T) {
 				WithAPIURL("https://localhost:8834"),
 				WithToken("invalid-token"),
 			},
-			query:   &ScansListQuery{FolderID: 1},
-			wantErr: true,
+			scanID:    1,
+			historyID: 10,
+			wantErr:   true,
 		},
 		{
 			name: "error with no authentication",
 			options: []Option{
 				WithAPIURL("https://localhost:8834"),
 			},
-			query:   &ScansListQuery{FolderID: 1},
-			wantErr: true,
+			scanID:    1,
+			historyID: 10,
+			wantErr:   true,
 		},
 		{
-			name: "success with nil query",
+			name: "error with negative scan ID",
 			options: []Option{
 				WithAPIURL("https://localhost:8834"),
 				WithAPIKey(
@@ -67,11 +73,12 @@ func TestClient_ScansList(t *testing.T) {
 					"a306b9ff56069c37b3f2ee120358cac809d77f159a1cf796eb1df64f783eea91",
 				),
 			},
-			query:   nil,
-			wantErr: false,
+			scanID:    -1,
+			historyID: 10,
+			wantErr:   true,
 		},
 		{
-			name: "error with invalid folder ID",
+			name: "error with negative history ID",
 			options: []Option{
 				WithAPIURL("https://localhost:8834"),
 				WithAPIKey(
@@ -79,8 +86,9 @@ func TestClient_ScansList(t *testing.T) {
 					"a306b9ff56069c37b3f2ee120358cac809d77f159a1cf796eb1df64f783eea91",
 				),
 			},
-			query:   &ScansListQuery{FolderID: -1},
-			wantErr: true,
+			scanID:    1,
+			historyID: -10,
+			wantErr:   true,
 		},
 	}
 
@@ -91,13 +99,9 @@ func TestClient_ScansList(t *testing.T) {
 				t.Errorf("NewClient() error = %v", err)
 				return
 			}
-			got, err := c.ScansList(tt.query)
+			err = c.ScansDeleteHistory(tt.scanID, tt.historyID)
 			if (err != nil) != tt.wantErr {
-				t.Errorf("ScansList() error = %v, wantErr %v", err, tt.wantErr)
-				return
-			}
-			if !tt.wantErr && (got == nil || (len(got.Scans) == 0 && len(got.Folders) == 0)) {
-				t.Errorf("ScansList() got = %v, want non-nil scans or folders", got)
+				t.Errorf("ScansDeleteHistory() error = %v, wantErr %v", err, tt.wantErr)
 			}
 		})
 	}

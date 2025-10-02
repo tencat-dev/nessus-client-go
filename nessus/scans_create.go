@@ -21,12 +21,12 @@ type ScansCreateSetting struct {
 }
 
 type ScansCreateRequest struct {
-	UUID     string              `json:"uuid,omitempty"`
-	Settings *ScansCreateSetting `json:"settings,omitempty"`
+	TemplateUUID string              `json:"uuid,omitempty"`
+	Settings     *ScansCreateSetting `json:"settings,omitempty"`
 }
 
 type ScanResult struct {
-	Creationdate           int    `json:"creation_date,omitempty"`
+	CreationDate           int    `json:"creation_date,omitempty"`
 	CustomTargets          string `json:"custom_targets,omitempty"`
 	DefaultPermissions     int    `json:"default_permissions,omitempty"`
 	Description            string `json:"description,omitempty"`
