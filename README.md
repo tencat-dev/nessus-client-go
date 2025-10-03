@@ -17,7 +17,7 @@ import (
  "fmt"
  "log"
 
- nessus "github.com/tencat-dev/nessus-client-go"
+ "github.com/tencat-dev/nessus-client-go/nessus"
 )
 
 func main() {
