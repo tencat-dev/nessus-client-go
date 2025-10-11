@@ -39,7 +39,7 @@ type ScanResult struct {
   Owner                  string `json:"owner,omitempty"`
   OwnerID                int    `json:"owner_id,omitempty"`
   PolicyID               int    `json:"policy_id,omitempty"`
-  Enabled                string `json:"enabled,omitempty"`
+  Enabled                int    `json:"enabled,omitempty"`
   Rrules                 string `json:"rrules,omitempty"`
   ScannerID              int    `json:"scanner_id,omitempty"`
   Shared                 int    `json:"shared,omitempty"`
