@@ -11,8 +11,9 @@ type ScansCreateSetting struct {
 	Name         string   `json:"name,omitempty"`
 	Description  string   `json:"description,omitempty"`
 	Emails       string   `json:"emails,omitempty"`
-	Enabled      string   `json:"enabled,omitempty"`
+	Enabled      bool     `json:"enabled,omitempty"`
 	Launch       string   `json:"launch,omitempty"`
+	LaunchNow    string   `json:"launch_now,omitempty"`
 	FolderID     string   `json:"folder_id,omitempty"`
 	PolicyID     string   `json:"policy_id,omitempty"`
 	ScannerID    string   `json:"scanner_id,omitempty"`
@@ -39,7 +40,7 @@ type ScanResult struct {
 	Owner                  string `json:"owner,omitempty"`
 	OwnerID                int    `json:"owner_id,omitempty"`
 	PolicyID               int    `json:"policy_id,omitempty"`
-	Enabled                bool   `json:"enabled,omitempty"`
+	Enabled                int    `json:"enabled,omitempty"`
 	Rrules                 string `json:"rrules,omitempty"`
 	ScannerID              int    `json:"scanner_id,omitempty"`
 	Shared                 int    `json:"shared,omitempty"`
