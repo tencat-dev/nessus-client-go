@@ -13,7 +13,7 @@ type ScansCreateSetting struct {
 	Emails       string   `json:"emails,omitempty"`
 	Enabled      bool     `json:"enabled,omitempty"`
 	Launch       string   `json:"launch,omitempty"`
-	LaunchNow    string   `json:"launch_now,omitempty"`
+	LaunchNow    bool     `json:"launch_now,omitempty"`
 	FolderID     string   `json:"folder_id,omitempty"`
 	PolicyID     string   `json:"policy_id,omitempty"`
 	ScannerID    string   `json:"scanner_id,omitempty"`
