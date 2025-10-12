@@ -128,7 +128,7 @@ type ScanSettings struct {
 }
 
 type ScansCreateCustomRequest struct {
-	TemplateUUID string        `json:"uuid,omitempty"`
+	TemplateUUID TemplateType  `json:"uuid,omitempty"`
 	Settings     *ScanSettings `json:"settings,omitempty"`
 }
 
