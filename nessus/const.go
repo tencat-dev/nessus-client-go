@@ -24,3 +24,9 @@ const (
 	ScanEmpty     ScanStatus = "empty"
 	ScanAborted   ScanStatus = "aborted"
 )
+
+type TemplateType string
+
+const (
+	TemplateBasic TemplateType = "731a8e52-3ea6-a291-ec0a-d2ff0619c19d7bd788d6be818b65"
+)

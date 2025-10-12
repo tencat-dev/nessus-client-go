@@ -22,7 +22,7 @@ type ScansCreateSetting struct {
 }
 
 type ScansCreateRequest struct {
-	TemplateUUID string              `json:"uuid,omitempty"`
+	TemplateUUID TemplateType        `json:"uuid,omitempty"`
 	Settings     *ScansCreateSetting `json:"settings,omitempty"`
 }
 
