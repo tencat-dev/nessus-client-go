@@ -63,7 +63,11 @@ func (c *Client) ScansPluginOutput(pathParam *ScansPluginOutputPathParams, query
 		params.Add("history_id", fmt.Sprintf("%d", query.HistoryID))
 	}
 
-	apiPath := fmt.Sprintf("/scans/%d/hosts/%d/plugins/%d", pathParam.ScanID, pathParam.HostID, pathParam.PluginID)
+	apiPath := fmt.Sprintf("/scans/%d/plugins/%d", pathParam.ScanID, pathParam.PluginID)
+	if pathParam.HostID != 0 {
+		apiPath = fmt.Sprintf("/scans/%d/hosts/%d/plugins/%d", pathParam.ScanID, pathParam.HostID, pathParam.PluginID)
+	}
+
 	queryStr := params.Encode()
 
 	if queryStr != "" {
