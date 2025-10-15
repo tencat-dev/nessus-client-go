@@ -24,7 +24,7 @@ type PermissionResource struct {
 
 type HostResource struct {
 	HostID                int    `json:"host_id,omitempty"`
-	HostIndex             string `json:"host_index,omitempty"`
+	HostIndex             int    `json:"host_index,omitempty"`
 	HostName              string `json:"host_name,omitempty"`
 	Progress              string `json:"progress,omitempty"`
 	Severity              int    `json:"severity,omitempty"`
