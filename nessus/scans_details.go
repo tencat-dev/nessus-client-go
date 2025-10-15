@@ -86,7 +86,7 @@ type FilterResource struct {
 type ScansDetailsInfo struct {
 	Acls            []*PermissionResource `json:"acls,omitempty"`
 	EditAllowed     bool                  `json:"edit_allowed,omitempty"`
-	Status          string                `json:"status,omitempty"`
+	Status          ScanStatus            `json:"status,omitempty"`
 	Policy          string                `json:"policy,omitempty"`
 	PCICanUpload    bool                  `json:"pci-can-upload,omitempty"`
 	Hasaudittrail   bool                  `json:"hasaudittrail,omitempty"`
