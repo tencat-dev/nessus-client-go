@@ -41,9 +41,12 @@ type HostResource struct {
 }
 
 type NoteResource struct {
-	Title    string `json:"title,omitempty"`
-	Message  string `json:"message,omitempty"`
-	Severity int    `json:"severity,omitempty"`
+	Type string `json:"title,omitempty"`
+	Note []struct {
+		Title    string `json:"title,omitempty"`
+		Message  string `json:"message,omitempty"`
+		Severity int    `json:"severity,omitempty"`
+	} `json:"note,omitempty"`
 }
 
 type RemediationResource struct {
@@ -117,7 +120,7 @@ type ScansDetailsResponse struct {
 	Info            *ScansDetailsInfo
 	Hosts           []*HostResource
 	Comphosts       []*HostResource
-	Notes           []*NoteResource
+	Notes           *NoteResource
 	Remediations    *ScansDetailsRemediations
 	Vulnerabilities []*VulnerabilityResource
 	Compliance      []*VulnerabilityResource
