@@ -102,7 +102,7 @@ type ScansDetailsInfo struct {
 	Haskb           bool                  `json:"haskb,omitempty"`
 	UUID            string                `json:"uuid,omitempty"`
 	Hostcount       int                   `json:"hostcount,omitempty"`
-	ScanEnd         string                `json:"scan_end,omitempty"`
+	ScanEnd         int                   `json:"scan_end,omitempty"`
 	Name            string                `json:"name,omitempty"`
 	UserPermissions int                   `json:"user_permissions,omitempty"`
 	Control         bool                  `json:"control,omitempty"`
