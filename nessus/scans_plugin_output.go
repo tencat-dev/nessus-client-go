@@ -15,6 +15,7 @@ type ScansPluginOutputInfo struct {
 		Pluginname       string `json:"pluginname,omitempty"`
 		Pluginattributes struct {
 			RiskInformation   map[string]string `json:"risk_information,omitempty"`
+			RefInformation    map[string]any    `json:"ref_information,omitempty"`
 			PluginName        string            `json:"plugin_name,omitempty"`
 			PluginInformation struct {
 				PluginID               int    `json:"plugin_id,omitempty"`
