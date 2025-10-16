@@ -14,9 +14,17 @@ type ScansPluginOutputInfo struct {
 		Severity         int    `json:"severity,omitempty"`
 		Pluginname       string `json:"pluginname,omitempty"`
 		Pluginattributes struct {
-			RiskInformation   map[string]string `json:"risk_information,omitempty"`
-			RefInformation    map[string]any    `json:"ref_information,omitempty"`
-			PluginName        string            `json:"plugin_name,omitempty"`
+			RiskInformation map[string]string `json:"risk_information,omitempty"`
+			RefInformation  struct {
+				Ref []struct {
+					Name   string `json:"name"`
+					Values struct {
+						Value []string `json:"value"`
+					} `json:"values"`
+					URL string `json:"url"`
+				} `json:"ref"`
+			} `json:"ref_information"`
+			PluginName        string `json:"plugin_name,omitempty"`
 			PluginInformation struct {
 				PluginID               int    `json:"plugin_id,omitempty"`
 				PluginType             string `json:"plugin_type,omitempty"`
