@@ -14,10 +14,8 @@ type ScansPluginOutputInfo struct {
 		Severity         int    `json:"severity,omitempty"`
 		Pluginname       string `json:"pluginname,omitempty"`
 		Pluginattributes struct {
-			RiskInformation struct {
-				RiskFactor string `json:"risk_factor,omitempty"`
-			} `json:"risk_information,omitempty"`
-			PluginName        string `json:"plugin_name,omitempty"`
+			RiskInformation   map[string]string `json:"risk_information,omitempty"`
+			PluginName        string            `json:"plugin_name,omitempty"`
 			PluginInformation struct {
 				PluginID               int    `json:"plugin_id,omitempty"`
 				PluginType             string `json:"plugin_type,omitempty"`
