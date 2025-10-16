@@ -93,7 +93,7 @@ type ScansDetailsInfo struct {
 	Policy          string                `json:"policy,omitempty"`
 	PCICanUpload    bool                  `json:"pci-can-upload,omitempty"`
 	Hasaudittrail   bool                  `json:"hasaudittrail,omitempty"`
-	ScanStart       string                `json:"scan_start,omitempty"`
+	ScanStart       int                   `json:"scan_start,omitempty"`
 	FolderID        int                   `json:"folder_id,omitempty"`
 	Targets         string                `json:"targets,omitempty"`
 	Timestamp       int                   `json:"timestamp,omitempty"`
