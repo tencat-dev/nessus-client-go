@@ -31,10 +31,11 @@ type ScansPluginOutputInfo struct {
 				PluginFamily           string `json:"plugin_family,omitempty"`
 				PluginModificationDate string `json:"plugin_modification_date,omitempty"`
 			} `json:"plugin_information,omitempty"`
-			Solution    string `json:"solution,omitempty"`
-			Fname       string `json:"fname,omitempty"`
-			Synopsis    string `json:"synopsis,omitempty"`
-			Description string `json:"description,omitempty"`
+			Solution    string   `json:"solution,omitempty"`
+			Fname       string   `json:"fname,omitempty"`
+			Synopsis    string   `json:"synopsis,omitempty"`
+			Description string   `json:"description,omitempty"`
+			SeeAlso     []string `json:"see_also,omitempty"`
 		} `json:"pluginattributes,omitempty"`
 		PluginFamily string `json:"plugin_family,omitempty"`
 		PluginID     string `json:"plugin_id,omitempty"`
