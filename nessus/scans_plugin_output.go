@@ -53,15 +53,17 @@ type ScansPluginOutputPathParams struct {
 }
 
 type PluginOutput struct {
-	PluginOutput string         `json:"plugin_output,omitempty"`
-	Hosts        string         `json:"hosts,omitempty"`
-	Severity     int            `json:"severity,omitempty"`
-	Ports        map[string]any `json:"ports,omitempty"`
+	MaxAttachmentsExceeded bool           `json:"max_attachments_exceeded,omitempty"`
+	Ports                  map[string]any `json:"ports,omitempty"`
+	HasAttachment          any            `json:"has_attachment,omitempty"`
+	Hosts                  any            `json:"hosts,omitempty"`
+	Severity               int            `json:"severity,omitempty"`
+	PluginOutput           string         `json:"plugin_output,omitempty"`
 }
 
 type ScansPluginOutputResponse struct {
-	Info   *ScansPluginOutputInfo
-	Output []*PluginOutput
+	Info    *ScansPluginOutputInfo `json:"info,omitempty"`
+	Outputs []*PluginOutput        `json:"outputs,omitempty"`
 }
 
 func (c *Client) ScansPluginOutput(pathParam *ScansPluginOutputPathParams, query *ScansPluginOutputQuery) (*ScansPluginOutputResponse, error) {
