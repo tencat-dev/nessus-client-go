@@ -5,6 +5,7 @@ import (
 	"io"
 	"net/http"
 	"net/url"
+	"time"
 
 	"github.com/bytedance/sonic"
 )
@@ -31,11 +32,21 @@ type ScansPluginOutputInfo struct {
 				PluginFamily           string `json:"plugin_family,omitempty"`
 				PluginModificationDate string `json:"plugin_modification_date,omitempty"`
 			} `json:"plugin_information,omitempty"`
-			Solution    string   `json:"solution,omitempty"`
-			Fname       string   `json:"fname,omitempty"`
-			Synopsis    string   `json:"synopsis,omitempty"`
-			Description string   `json:"description,omitempty"`
-			SeeAlso     []string `json:"see_also,omitempty"`
+			Solution        string   `json:"solution,omitempty"`
+			Fname           string   `json:"fname,omitempty"`
+			Synopsis        string   `json:"synopsis,omitempty"`
+			Description     string   `json:"description,omitempty"`
+			SeeAlso         []string `json:"see_also,omitempty"`
+			VulnInformation struct {
+				InTheNews           string    `json:"in_the_news,omitempty"`
+				AssetInventory      string    `json:"asset_inventory,omitempty"`
+				VulnPublicationDate time.Time `json:"vuln_publication_date,omitempty"`
+				ExploitabilityEase  string    `json:"exploitability_ease,omitempty"`
+				ExploitAvailable    string    `json:"exploit_available,omitempty"`
+				UnsupportedByVendor string    `json:"unsupported_by_vendor,omitempty"`
+				Impact              string    `json:"impact,omitempty"`
+				CPE                 string    `json:"cpe,omitempty"`
+			} `json:"vuln_information"`
 		} `json:"pluginattributes,omitempty"`
 		PluginFamily string `json:"plugin_family,omitempty"`
 		PluginID     string `json:"plugin_id,omitempty"`
