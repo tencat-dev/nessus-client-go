@@ -37,15 +37,18 @@ type ScansPluginOutputInfo struct {
 			Synopsis        string   `json:"synopsis,omitempty"`
 			Description     string   `json:"description,omitempty"`
 			SeeAlso         []string `json:"see_also,omitempty"`
+			VPRScore        string   `json:"vpr_score,omitempty"`
+			EPSSScore       string   `json:"epss_score,omitempty"`
 			VulnInformation struct {
-				InTheNews           string    `json:"in_the_news,omitempty"`
-				AssetInventory      string    `json:"asset_inventory,omitempty"`
-				VulnPublicationDate time.Time `json:"vuln_publication_date,omitempty"`
-				ExploitabilityEase  string    `json:"exploitability_ease,omitempty"`
-				ExploitAvailable    string    `json:"exploit_available,omitempty"`
-				UnsupportedByVendor string    `json:"unsupported_by_vendor,omitempty"`
-				Impact              string    `json:"impact,omitempty"`
-				CPE                 string    `json:"cpe,omitempty"`
+				InTheNews            string    `json:"in_the_news,omitempty"`
+				AssetInventory       string    `json:"asset_inventory,omitempty"`
+				VulnPublicationDate  time.Time `json:"vuln_publication_date,omitempty"`
+				PatchPublicationDate time.Time `json:"patch_publication_date,omitempty"`
+				ExploitabilityEase   string    `json:"exploitability_ease,omitempty"`
+				ExploitAvailable     string    `json:"exploit_available,omitempty"`
+				UnsupportedByVendor  string    `json:"unsupported_by_vendor,omitempty"`
+				Impact               string    `json:"impact,omitempty"`
+				CPE                  string    `json:"cpe,omitempty"`
 			} `json:"vuln_information"`
 		} `json:"pluginattributes,omitempty"`
 		PluginFamily string `json:"plugin_family,omitempty"`
