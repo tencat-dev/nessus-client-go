@@ -2,6 +2,8 @@ package nessus
 
 import (
 	"testing"
+
+	"github.com/bytedance/sonic"
 )
 
 func TestClient_ScansDetails(t *testing.T) {
@@ -119,6 +121,82 @@ func TestClient_ScansDetails(t *testing.T) {
 			}
 			if !tt.wantErr && got == nil {
 				t.Errorf("ScansDetails() got = %v, want non-nil", got)
+			}
+		})
+	}
+}
+
+func TestScansDetails_DecodesFlexibleScanEnd(t *testing.T) {
+	tests := []struct {
+		name string
+		json string
+		want FlexibleInt
+	}{
+		{
+			name: "unix timestamp",
+			json: `{"info":{"scan_end":1788685557}}`,
+			want: 1788685557,
+		},
+		{
+			name: "numeric string",
+			json: `{"info":{"scan_end":"1788685557"}}`,
+			want: 1788685557,
+		},
+		{
+			name: "ctime string",
+			json: `{"info":{"scan_end":"Sun Sep  6 09:05:57 2026"}}`,
+			want: 1788685557,
+		},
+		{
+			name: "null",
+			json: `{"info":{"scan_end":null}}`,
+			want: 0,
+		},
+		{
+			name: "unparseable string",
+			json: `{"info":{"scan_end":"bogus"}}`,
+			want: 0,
+		},
+	}
+
+	for _, tt := range tests {
+		t.Run(tt.name, func(t *testing.T) {
+			var d ScansDetailsResponse
+			if err := sonic.Unmarshal([]byte(tt.json), &d); err != nil {
+				t.Fatalf("sonic.Unmarshal: %v", err)
+			}
+			if d.Info == nil {
+				t.Fatal("nil Info")
+			}
+			if d.Info.ScanEnd != tt.want {
+				t.Errorf("ScanEnd = %d, want %d", d.Info.ScanEnd, tt.want)
+			}
+		})
+	}
+}
+
+func TestFlexibleInt_UnmarshalJSON(t *testing.T) {
+	tests := []struct {
+		name string
+		json string
+		want FlexibleInt
+	}{
+		{"number", `42`, 42},
+		{"numeric string", `"42"`, 42},
+		{"ctime", `"Sun Sep  6 09:05:57 2026"`, 1788685557},
+		{"null", `null`, 0},
+		{"garbage", `"nope"`, 0},
+	}
+
+	for _, tt := range tests {
+		t.Run(tt.name, func(t *testing.T) {
+			var fi FlexibleInt
+			err := sonic.Unmarshal([]byte(tt.json), &fi)
+			if err != nil {
+				t.Fatalf("sonic.Unmarshal: %v", err)
+			}
+			if fi != tt.want {
+				t.Errorf("FlexibleInt = %d, want %d", fi, tt.want)
 			}
 		})
 	}

@@ -5,9 +5,50 @@ import (
 	"io"
 	"net/http"
 	"net/url"
+	"strconv"
+	"strings"
+	"time"
 
 	"github.com/bytedance/sonic"
 )
+
+// ctimeLayout matches Nessus's human-readable scan_start/scan_end format, e.g.
+// "Sun Sep  6 09:05:57 2026" (space-padded day).
+const ctimeLayout = "Mon Jan _2 15:04:05 2006"
+
+// FlexibleInt decodes a JSON integer, a numeric string, or a ctime string into
+// an int64. Nessus returns scan_start/scan_end as Unix timestamps on some
+// versions and ctime strings on others; accepting all three keeps
+// ScansDetails decodable across Nessus versions. An unparseable string
+// decodes to 0 rather than failing the whole response.
+type FlexibleInt int64
+
+func (fi *FlexibleInt) UnmarshalJSON(data []byte) error {
+	s := strings.TrimSpace(string(data))
+	if s == "" || s == "null" {
+		return nil
+	}
+
+	if s[0] == '"' {
+		var str string
+		if err := sonic.Unmarshal(data, &str); err != nil {
+			return err
+		}
+		if n, err := strconv.ParseInt(str, 10, 64); err == nil {
+			*fi = FlexibleInt(n)
+		} else if t, err := time.Parse(ctimeLayout, str); err == nil {
+			*fi = FlexibleInt(t.Unix())
+		}
+		return nil
+	}
+
+	var n int64
+	if err := sonic.Unmarshal(data, &n); err != nil {
+		return err
+	}
+	*fi = FlexibleInt(n)
+	return nil
+}
 
 type ScansDetailsQuery struct {
 	HistoryID int
@@ -102,7 +143,7 @@ type ScansDetailsInfo struct {
 	Haskb           bool                  `json:"haskb,omitempty"`
 	UUID            string                `json:"uuid,omitempty"`
 	Hostcount       int                   `json:"hostcount,omitempty"`
-	ScanEnd         int                   `json:"scan_end,omitempty"`
+	ScanEnd         FlexibleInt           `json:"scan_end,omitempty"`
 	Name            string                `json:"name,omitempty"`
 	UserPermissions int                   `json:"user_permissions,omitempty"`
 	Control         bool                  `json:"control,omitempty"`
